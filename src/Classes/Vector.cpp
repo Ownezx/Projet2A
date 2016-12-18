@@ -120,7 +120,7 @@ Vector Vector::operator+(Vector const& A){
 		return Vector(A.size,vals);
 	}
 	else{
-		cout<<"Error : cannot add vectors with different dimensions"<<endl;
+		cerr<<"Error : cannot add vectors with different dimensions"<<endl;
 		throw -1;
 	}
 }
