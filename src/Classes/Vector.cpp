@@ -32,7 +32,7 @@ void Vector::setValue(int pos, float value) {
 		values[pos]=value;
 	}
 	else{
-		cout<<"Error : cannot assign value to higher dimentions"<<endl;
+		cerr<<"Error : cannot assign value to higher dimensions"<<endl;
 		throw -1;
 	}
 }
@@ -50,7 +50,7 @@ float Vector::scalar(const Vector& A) {
 		return sum;
 	}
 	else{
-		cout<<"Error : cannot scalar vector with different dimensions"<<endl;
+		cerr<<"Error : cannot scalar vectors with different dimensions"<<endl;
 		throw -1;
 	}
 }
@@ -75,6 +75,64 @@ int Vector::max() {
 			}
 	return posmax;
 }
+
+Vector Vector::operator*(Vector const& A){
+	if(size==A.size && A.size==3){
+		float* vals = new float[A.size];
+		for (int i=0; i<size ; i++){
+			vals[i]=values[i]*A.values[(i+1)%3] - values[(i+1)%3]*A.values[i];
+		}
+		return Vector(A.size,vals);
+
+	}
+	else{
+		cerr<<"Error : cannot dot product vectors with different dimensions or with dimension different than 3"<<endl;
+		throw -1;
+	}
+}
+
+void Vector::negate(){
+	for(int i=0; i< size; i++){
+		values[i]= -values[i];
+			}
+}
+
+Vector Vector::operator-(Vector const& A){
+	if(size==A.size){
+		float* vals =new float[size];
+		for(int i=0; i< A.size; i++){
+			vals[i] = values[i]-A.values[i];
+				}
+		return Vector(A.size,vals);
+	}
+	else{
+		cerr<<"Error : cannot substract vectors with different dimensions"<<endl;
+		throw -1;
+	}
+}
+
+Vector Vector::operator+(Vector const& A){
+	if(size==A.size){
+		float* vals =new float[size];
+		for(int i=0; i< A.size; i++){
+			vals[i] = A.values[i]+values[i];
+				}
+		return Vector(A.size,vals);
+	}
+	else{
+		cout<<"Error : cannot add vectors with different dimensions"<<endl;
+		throw -1;
+	}
+}
+
+void Vector::print(){
+	cout<<"(";
+	for(int i=0; i< size-1; i++){
+		cout<<values[i]<<",";
+			}
+	cout<<values[size-1]<<")"<<endl;
+}
+
 
 
 } /* namespace std */

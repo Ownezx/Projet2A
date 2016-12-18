@@ -9,7 +9,10 @@
 
 namespace std {
 
-Matrix::Matrix(int sizeX,int sizeY) {
+Matrix::Matrix(int SizeX,int SizeY) {
+	sizeX=SizeX;
+	sizeY=SizeY;
+	values = Vector(sizeX*sizeY);
 	// TODO Auto-generated constructor stub
 
 }

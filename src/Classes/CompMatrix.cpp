@@ -9,7 +9,9 @@
 
 namespace std {
 
-CompMatrix::CompMatrix() {
+CompMatrix::CompMatrix(int SizeX,int SizeY) {
+	sizeX=SizeX;
+	sizeY=SizeY;
 	// TODO Auto-generated constructor stub
 
 }

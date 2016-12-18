@@ -8,6 +8,8 @@
 #ifndef CLASSES_VECTOR_H_
 #define CLASSES_VECTOR_H_
 
+#include <iostream>
+
 namespace std {
 
 class Vector {
@@ -27,11 +29,12 @@ public:
 	float scalar(Vector const& A);
 	float norm();
 	int max();
-	Vector operator*(Vector const& A, Vector const& B);
-	Vector negate();
-	Vector operator-(Vector const& A, Vector const& B);
-	Vector operator+(Vector const& A, Vector const& B);
+	Vector operator*(Vector const& A);
+	void negate();
+	Vector operator-(Vector const& A);
+	Vector operator+(Vector const& A);
 
+	void print();
 
 };
 

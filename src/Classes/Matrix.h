@@ -9,6 +9,7 @@
 #define CLASSES_MATRIX_H_
 
 #include "Vector.h"
+#include <iostream>
 
 namespace std {
 
@@ -17,7 +18,7 @@ class Matrix {
 public:
 	int sizeX;
 	int sizeY;
-	Vector values;
+	Vector values=Vector(sizeX*sizeY);
 
 public:
 	Matrix(int,int);
@@ -34,9 +35,9 @@ public:
 	float det();
 	Matrix transpose();
 	Matrix negate();
-	Matrix operator*(Matrix const& A,Matrix const& B);
-	Matrix operator+(Matrix const& A,Matrix const& B);
-	Matrix operator-(Matrix const& A,Matrix const& B);
+	Matrix operator*(Matrix const& A);
+	Matrix operator+(Matrix const& A);
+	Matrix operator-(Matrix const& A);
 
 
 
