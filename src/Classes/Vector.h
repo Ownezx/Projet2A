@@ -21,6 +21,7 @@ public:
 public:
 	Vector(int);
 	Vector(int,float*);
+	Vector(const Vector& vec);
 	virtual ~Vector();
 
 	void setValue(int,float);
@@ -29,7 +30,10 @@ public:
 	float scalar(Vector const& A);
 	float norm();
 	int max();
-	Vector operator*(Vector const& A);
+	double sumUp();
+
+	Vector operator*(const Vector& A);
+	Vector operator*(const double& a);
 	void negate();
 	Vector operator-(Vector const& A);
 	Vector operator+(Vector const& A);

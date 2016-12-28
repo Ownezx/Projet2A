@@ -9,6 +9,7 @@
 #define CLASSES_COMPMATRIX_H_
 
 #include "Vector.h"
+#include "Matrix.h"
 #include <iostream>
 
 namespace std {
@@ -34,12 +35,13 @@ public:
 	void setRow(int,Vector);
 	void setLine(int, Vector);
 
-	float det();
-	CompMatrix transpose();
+	float det(); //TODO
+	CompMatrix transpose(); //TO CORRECT
 	CompMatrix negate();
 	CompMatrix operator*(CompMatrix const& A);
 	CompMatrix operator+(CompMatrix const& A);
 	CompMatrix operator-(CompMatrix const& A);
+	Matrix ConvertToMatrix(); //TODO
 
 };
 

@@ -9,6 +9,7 @@
 #define CLASSES_MATRIX_H_
 
 #include "Vector.h"
+#include "CompMatrix.h"
 #include <iostream>
 
 namespace std {
@@ -18,26 +19,32 @@ class Matrix {
 public:
 	int sizeX;
 	int sizeY;
-	Vector values=Vector(sizeX*sizeY);
+	Vector *pvalues;
 
 public:
 	Matrix(int,int);
 	Matrix(int,int,Vector);
 	virtual ~Matrix();
+	Matrix(const Matrix& mat);
 
 	float getValue(int,int);
-	Vector getLine(int);
+	Vector getColumn(int);
 	Vector getRow(int);
 	void setValue(int,int,float);
 	void setRow(int,Vector);
-	void setLine(int, Vector);
+	void setColumn(int, Vector);
+	void print();
 
 	float det();
-	Matrix transpose();
+	Matrix transpose();   //TO CORRECT
 	Matrix negate();
-	Matrix operator*(Matrix const& A);
-	Matrix operator+(Matrix const& A);
-	Matrix operator-(Matrix const& A);
+	Matrix& operator*(Matrix const& A);
+	Matrix& operator*(double a);
+	Matrix& operator+(Matrix const& A);
+	Matrix& operator-(Matrix const& A);
+	Matrix& operator=(const Matrix& mat);
+	CompMatrix convertToComp();     //TODO
+
 
 
 

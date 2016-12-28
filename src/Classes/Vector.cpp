@@ -22,8 +22,19 @@ Vector::Vector(int Size, float* Values) {
 	values = Values;
 }
 
+
+Vector::Vector(const Vector& vec){
+	this->size = vec.size;
+	this->values = new float[vec.size];
+	for (int i=0;i<vec.size;i++){
+		values[i]=vec.values[i];
+	}
+}
+
 Vector::~Vector() {
-	// TODO Auto-generated destructor stub
+	if(!values)
+		delete [] values;
+	values = NULL;
 }
 
 
@@ -76,17 +87,42 @@ int Vector::max() {
 	return posmax;
 }
 
-Vector Vector::operator*(Vector const& A){
+double Vector::sumUp(){
+	double sum=0;
+	for (int i=0;i<size;i++){
+		sum = sum + values[i];
+	}
+	return sum;
+}
+
+Vector Vector::operator*(const Vector& A){
 	if(size==A.size && A.size==3){
-		float* vals = new float[A.size];
+		float vals[A.size];
 		for (int i=0; i<size ; i++){
 			vals[i]=values[i]*A.values[(i+1)%3] - values[(i+1)%3]*A.values[i];
 		}
-		return Vector(A.size,vals);
-
+		Vector* temp = new Vector(size,vals);
+		return *temp;
+		delete temp;
 	}
 	else{
 		cerr<<"Error : cannot dot product vectors with different dimensions or with dimension different than 3"<<endl;
+		throw -1;
+	}
+}
+
+Vector Vector::operator*(const double& a){
+	if(size!=0){
+		float vals[size];
+		for (int i=0; i<size ; i++){
+			vals[i]=values[i]*a;
+		}
+		Vector* temp = new Vector(size,vals);
+		return *temp;
+		delete temp;
+	}
+	else{
+		cerr<<"Error : cannot product empty vectors with scalar"<<endl;
 		throw -1;
 	}
 }
@@ -97,13 +133,15 @@ void Vector::negate(){
 			}
 }
 
-Vector Vector::operator-(Vector const& A){
+Vector Vector::operator-(const Vector& A){
 	if(size==A.size){
-		float* vals =new float[size];
+		float vals[size];
 		for(int i=0; i< A.size; i++){
 			vals[i] = values[i]-A.values[i];
 				}
-		return Vector(A.size,vals);
+		Vector* temp = new Vector(size,vals);
+		return *temp;
+		delete temp;
 	}
 	else{
 		cerr<<"Error : cannot substract vectors with different dimensions"<<endl;
@@ -111,13 +149,15 @@ Vector Vector::operator-(Vector const& A){
 	}
 }
 
-Vector Vector::operator+(Vector const& A){
+Vector Vector::operator+(const Vector& A){
 	if(size==A.size){
-		float* vals =new float[size];
+		float vals[size];
 		for(int i=0; i< A.size; i++){
 			vals[i] = A.values[i]+values[i];
 				}
-		return Vector(A.size,vals);
+		Vector* temp = new Vector(size,vals);
+		return *temp;
+		delete temp;
 	}
 	else{
 		cerr<<"Error : cannot add vectors with different dimensions"<<endl;
@@ -132,6 +172,7 @@ void Vector::print(){
 			}
 	cout<<values[size-1]<<")"<<endl;
 }
+
 
 
 
