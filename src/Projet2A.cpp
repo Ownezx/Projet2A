@@ -76,7 +76,7 @@ int main() {
 	mat3.print();
 	//mat4.print();
 
-	cout<<"Putain ca maaaaaaaaaaarche paaaaaaaaaas!ewuiqfy8324q9udasix 3192bfxy 820"<<endl;
+	cout<<"Putain ca maaaaaaaaaaarche!ewuiqfy8324q9udasix 3192bfxy 820"<<endl;
 
 
 

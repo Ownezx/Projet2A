@@ -84,7 +84,7 @@ float Matrix::det(){
 	return -1;
 }
 
-Matrix Matrix::transpose(){
+Matrix& Matrix::transpose(){
 	if (sizeX * sizeY != 0 && pvalues != NULL) {
 		Vector* temp = new Vector(sizeX * sizeY);
 		for (int i = 0; i < sizeX; i++) {

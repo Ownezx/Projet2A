@@ -36,7 +36,7 @@ public:
 	void print();
 
 	float det();
-	Matrix transpose();   //TO CORRECT
+	Matrix& transpose();   //TO CORRECT
 	Matrix negate();
 	Matrix& operator*(Matrix const& A);
 	Matrix& operator*(double a);
